@@ -31,7 +31,7 @@ const upload = multer({ storage });
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors({
-  origin: "https://mern-art-app.onrender.com"
+  origin: "https://art-ai86.onrender.com/"
 }))
 
 mongoose
