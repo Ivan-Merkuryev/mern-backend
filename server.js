@@ -112,7 +112,7 @@ app.post("/uploadArr", checkMember, upload.array("images"), (req, res) => {
   const urls = req.files.map((file) => `/uploads/${file.originalname}`);
   res.json({ urls });
 });
-///Product
+//Product
 
 app.get('/products', ProductController.getAll)
 app.get('/products/:id', ProductController.getOne)
