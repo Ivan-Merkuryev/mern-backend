@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import multer from "multer";
 import cors from "cors";
+import fs from "fs";
 
 import {
   registerValidation,
@@ -19,6 +20,9 @@ const app = express();
 //Multer
 const storage = multer.diskStorage({
   destination: (_, __, cb) => {
+    if (!fs.existsSync("uploads")) {
+      fs.mkdirSync("uploads");
+    }
     cb(null, "uploads");
   },
   filename: (_, file, cb) => {
@@ -30,7 +34,6 @@ const upload = multer({ storage });
 
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
-app.use(express.static('public'));
 app.use(cors({
   origin: "https://art-ai86.onrender.com"
 }))
