@@ -39,9 +39,7 @@ app.use(cors({
 }))
 
 mongoose
-  .connect(
-    "mongodb+srv://ivanmerkuriiev:hCyNQNRaqJxlsKHz@cluster0.8k0duql.mongodb.net/artblog?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URL)
   .then(() => console.log("DB ok"))
   .catch((err) => console.log("DB err", err));
 
