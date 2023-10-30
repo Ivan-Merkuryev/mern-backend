@@ -123,8 +123,8 @@ app.delete('/products/:id', checkMember,  ProductController.remove)
 // Лента
 app.get('/feed', checkAuth, UserController.getFeed)
 
-const PORT = 4080;
+// const PORT = 4080;
 
-app.listen(PORT, () => {
-  console.log(`Сервер подключен к порту ${PORT}`);
+app.listen(process.env.PORT || 4080, () => {
+  console.log(`Сервер подключен к порту);
 });
