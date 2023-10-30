@@ -125,6 +125,9 @@ app.get('/feed', checkAuth, UserController.getFeed)
 
 // const PORT = 4080;
 
-app.listen(process.env.PORT || 4080, () => {
-  console.log(`Сервер подключен к порту);
+app.listen(process.env.PORT || 4080, (err) => {
+  if(err) {
+    console.log(err)
+  }
+   console.log(`Сервер подключен к порту`);
 });
