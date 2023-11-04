@@ -42,14 +42,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.use("/uploads", express.static("uploads"));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://art-ai86.onrender.com"
+}))
 
 mongoose
-  .connect(
-    "mongodb+srv://ivanmerkuriiev:hCyNQNRaqJxlsKHz@cluster0.8k0duql.mongodb.net/artblog?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URL)
   .then(() => console.log("DB ok"))
   .catch((err) => console.log("DB err", err));
 
@@ -164,8 +163,9 @@ app.delete("/products/:id", checkMember, ProductController.remove);
 // Лента
 app.get("/feed", checkAuth, UserController.getFeed);
 
-const PORT = 4080;
-
-app.listen(PORT, () => {
-  console.log(`Сервер подключен к порту ${PORT}`);
+app.listen(process.env.PORT || 4080, (err) => {
+  if(err) {
+    console.log(err)
+  }
+   console.log(Сервер подключен к порту);
 });
